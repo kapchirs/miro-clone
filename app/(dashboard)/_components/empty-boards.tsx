@@ -8,9 +8,11 @@ import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { useMutation } from "convex/react";
+import { useRouter } from "next/navigation";
 
 
 export const EmptyBoards = () => {
+    const router = useRouter();
     const { organization } = useOrganization();
     const mutate = useMutation(api.board.create);
 
@@ -23,7 +25,7 @@ export const EmptyBoards = () => {
         })
             .then((id) => {
                 toast.success("Доска создана");
-                // TODO: Redirect to board/{id}
+                router.push(`/board/${id}`);
             })
             .catch(() => toast.error("Не получилось создать доску"));
     };
