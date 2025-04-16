@@ -24,7 +24,7 @@ export const Toolbar = ({
         <div className="absolute top-[50%] -translate-y-[50%] left-2 flex flex-col gap-y-4">
             <div className="bg-white rounded-md p-1.5 flex gap-y-1 flex-col items-center shadow-md">
              <ToolButton 
-                label="Select"
+                label="Выбрать"
                 icon={MousePointer2}
                 onClick={() => setCanvasState({ mode: CanvasMode.None, })}
                 isActive={
@@ -32,7 +32,7 @@ export const Toolbar = ({
                 }
              />
              <ToolButton 
-                label="Text"
+                label="Текст"
                 icon={Type}
                 onClick={() => setCanvasState({
                     mode: CanvasMode.Inserting,
@@ -44,7 +44,7 @@ export const Toolbar = ({
                 }
              />
              <ToolButton 
-                label="Sticky note"
+                label="Записка"
                 icon={StickyNote}
                 onClick={() => setCanvasState({
                     mode: CanvasMode.Inserting,
@@ -56,7 +56,7 @@ export const Toolbar = ({
                  }
              />
              <ToolButton 
-                label="Rectangle"
+                label="Прямоугольник"
                 icon={Square}
                 onClick={() => setCanvasState({
                     mode: CanvasMode.Inserting,
@@ -68,7 +68,7 @@ export const Toolbar = ({
                  }
              />
              <ToolButton 
-                label="Ellipse"
+                label="Эллипс"
                 icon={Circle}
                 onClick={() => setCanvasState({
                     mode: CanvasMode.Inserting,
@@ -80,7 +80,7 @@ export const Toolbar = ({
                  }
              />
              <ToolButton 
-                label="Pen"
+                label="Ручка"
                 icon={Pencil}
                 onClick={() => setCanvasState({
                     mode: CanvasMode.Pensil,
@@ -92,13 +92,13 @@ export const Toolbar = ({
             </div>
             <div className="bg-white rounded-md p-1.5 flex flex-col items-center shadow-md">
                 <ToolButton 
-                    label="Undo"
+                    label="Назад"
                     icon={Undo2}
                     onClick={undo}
                     isDisabled={!canUndo}
                 />
                 <ToolButton 
-                    label="Redo"
+                    label="Вперёд"
                     icon={Redo2}
                     onClick={redo}
                     isDisabled={!canRedo}

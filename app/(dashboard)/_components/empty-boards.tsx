@@ -21,7 +21,7 @@ export const EmptyBoards = () => {
 
         mutate({
             orgId: organization.id,
-            title: "Untitled"
+            title: "Без названия"
         })
             .then((id) => {
                 toast.success("Доска создана");

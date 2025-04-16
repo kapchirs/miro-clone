@@ -45,7 +45,7 @@ export const Info = ({
     return (
         <div className="absolute top-2 left-2 bg-white rounded-md px-1.5 h-12 flex items-center shadow-md">
             <Hint 
-               label="Go to boards" side="bottom" sideOffset={10}
+               label="На главную" side="bottom" sideOffset={10}
             >
                 <Button asChild variant="board" className="px-2">
                     <Link 
@@ -67,7 +67,7 @@ export const Info = ({
                 </Button>
             </Hint>
             <TabSeparator />
-            <Hint label="Edit title" side="bottom" sideOffset={10}>
+            <Hint label="Изменить название" side="bottom" sideOffset={10}>
                 <Button
                     variant="board"
                     className="text-base font-normal px-2"
@@ -84,7 +84,7 @@ export const Info = ({
                 sideOffset={10}
             >
                 <div>
-                    <Hint label="Main menu" side="bottom" sideOffset={10}>
+                    <Hint label="Меню" side="bottom" sideOffset={10}>
                         <Button size="icon" variant="board">
                             <Menu />
                         </Button>

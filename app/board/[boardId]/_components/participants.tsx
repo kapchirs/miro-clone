@@ -23,7 +23,7 @@ export const Participants = () => {
                             key={connectionId}
                             src={info?.avatar}
                             name={info?.name}
-                            fallback={info?.name?.[0] || "Tim"}
+                            fallback={info?.name?.[0] || "Кол"}
                         />
                     )
                 })}
@@ -32,14 +32,14 @@ export const Participants = () => {
                     <UserAvatar
                         borderColor={connectionIdToColor(currentUser.connectionId)}
                         src={currentUser.info?.avatar}
-                        name={`${currentUser.info?.name} (You)`}
-                        fallback={currentUser.info?.name?.[0] || "You"}
+                        name={`${currentUser.info?.name} (Ты)`}
+                        fallback={currentUser.info?.name?.[0] || "Ты"}
                     />
                 )}
 
                 {hasMoreUsers && (
                     <UserAvatar 
-                        name={`${users.length - MAX_SHOWN_USERS} more`}
+                        name={`${users.length - MAX_SHOWN_USERS} и больше`}
                         fallback={`+${users.length - MAX_SHOWN_USERS}`}
                     />
                 )}

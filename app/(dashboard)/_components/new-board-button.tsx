@@ -23,7 +23,7 @@ export const NewBoardButton = ({
     const onClick = () => {
         mutate({
             orgId,
-            title: "Untitled"
+            title: "Без названия"
         })
             .then((id) => {
                 toast.success("Доска создана");
@@ -44,7 +44,7 @@ export const NewBoardButton = ({
             <div />
             <Plus className="h-12 w-12 text-white stroke-1" />
             <p className="text-sm text-white font-light">
-                New Board
+                Новая доска
             </p>
         </button>
     );
