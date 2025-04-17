@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { OrganizationProfile } from "@clerk/nextjs";
+import { CreateOrganization, OrganizationList, OrganizationProfile, OrganizationSwitcher } from "@clerk/nextjs";
 
 import {
     Dialog,
@@ -7,6 +7,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Organization, OrganizationInvitation, OrganizationMembership, OrganizationMembershipPublicUserData } from "@clerk/nextjs/server";
 
 export const InviteButton = () => {
     return (
@@ -14,11 +15,11 @@ export const InviteButton = () => {
             <DialogTrigger asChild>
                 <Button variant="outline">
                     <Plus className="h-4 w-4 mr-2" />
-                    Пригласить в организацию
+                        Создать организацию
                 </Button>
             </DialogTrigger>
-            <DialogContent className="p-0 bg-transparent border-none max-w-[880px]">
-                <OrganizationProfile />
+            <DialogContent className="p-0 bg-transparent border-none max-w-[480px]">
+                <CreateOrganization />
             </DialogContent>
         </Dialog>
     );

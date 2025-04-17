@@ -41,7 +41,7 @@ export const BoardCard = ({
 }: BoardCardProps) => {
     const { userId } = useAuth();
 
-    const authorLabel = userId === authorId ? "You" : authorName;
+    const authorLabel = userId === authorId ? "Вы" : authorName;
     const createdAtLabel = formatDistanceToNow(createdAt, {
         addSuffix: true,
     });

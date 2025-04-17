@@ -9,7 +9,7 @@ interface RectangleProps {
 };
 
 export const Rectangle = ({
-    id,
+    id, 
     layer,
     onPointerDown,
     selectionColor,
@@ -21,7 +21,7 @@ export const Rectangle = ({
             className="drop-shadow-md"
             onPointerDown={(e) => onPointerDown(e, id)}
             style={{
-                transform: `translate($(x)px, $(y)px)`,
+                transform: `translate(${x}px, ${y}px)`,
             }}
             x={0}
             y={0}
