@@ -29,6 +29,8 @@ export const OrgSidebar = () => {
                         alt="Logo"
                         height={60}
                         width={60}
+                        style={{ width: 'auto', height: 'auto' }}
+                        priority
                     />
                     <span className={cn(
                         "font-semibold text-2xl",
@@ -40,6 +42,9 @@ export const OrgSidebar = () => {
             </Link>
             <OrganizationSwitcher 
                 hidePersonal
+                afterCreateOrganizationUrl="/"
+                afterLeaveOrganizationUrl="/"
+                afterSelectOrganizationUrl="/"
                 appearance={{
                     elements: {
                         rootBox: {
@@ -66,7 +71,7 @@ export const OrgSidebar = () => {
                     size="lg"
                     className="font-normal justify-start px-2 w-full"
                 >
-                    <Link href="/">
+                    <Link href="/" prefetch>
                         <LayoutDashboard className="h-4 w-4 mr-2" />
                         Team boards
                     </Link>
@@ -80,7 +85,7 @@ export const OrgSidebar = () => {
                     <Link href={{
                         pathname: "/",
                         query: { favorites: true }
-                    }}>
+                    }} prefetch>
                         <Star className="h-4 w-4 mr-2" />
                         Favorite boards
                     </Link>

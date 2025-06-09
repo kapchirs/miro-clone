@@ -1,6 +1,7 @@
 //"use client";
 
 import { Loader } from "lucide-react";
+import Image from "next/image";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { InfoSkeleton } from "./info";
@@ -12,7 +13,16 @@ export const Loading = () => {
         <main
             className="h-full w-full relative bg-neutral-100 touch-none flex items-center justify-center"
         >
-            <Loader className="h-6 w-6 text-muted-foreground animate-spin" />
+            <div className="relative w-[120px] h-[120px]">
+                <Image
+                    src="/logo.svg"
+                    alt="Logo"
+                    width={120}
+                    height={120}
+                    className="animate-pulse duration-700"
+                    priority
+                />
+            </div>
             <InfoSkeleton />
             <ParticipantsSkeleton />
             <ToolbarSkeleton />

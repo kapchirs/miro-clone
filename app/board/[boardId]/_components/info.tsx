@@ -1,95 +1,87 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { Menu } from "lucide-react";
-import { Poppins } from "next/font/google";
-import { api } from "@/convex/_generated/api";
-import { cn } from "@/lib/utils";
-import { Actions } from "@/components/actions";
-import { Hint } from "@/components/hint";
-import { Button } from "@/components/ui/button";
-import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
+import { Button } from "@/components/ui/button";
 import { useRenameModal } from "@/store/use-rename-modal";
-
-
-interface InfoProps {
-    boardId: string;
-};
+import { Actions } from "@/components/actions";
+import { Menu } from "lucide-react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Separator } from "@/components/ui/separator";
+import { Poppins } from "next/font/google";
 
 const font = Poppins({
     subsets: ["latin"],
     weight: ["600"],
 });
 
-const TabSeparator = () => {
-    return (
-        <div className="text-neutral-300 px-1.5">
-            |
-        </div>
-    );
+interface InfoProps {
+    boardId: string;
 };
 
 export const Info = ({
     boardId,
 }: InfoProps) => {
+    const [isReady, setIsReady] = useState(false);
     const { onOpen } = useRenameModal();
 
     const data = useQuery(api.board.get, {
         id: boardId as Id<"boards">,
     });
 
-    if (!data) return <InfoSkeleton />;    
+    useEffect(() => {
+        setIsReady(true);
+    }, []);
+
+    if (!isReady) {
+        return null;
+    }
 
     return (
         <div className="absolute top-2 left-2 bg-white rounded-md px-1.5 h-12 flex items-center shadow-md">
-            <Hint 
-               label="На главную" side="bottom" sideOffset={10}
+            <Link href="/">
+                <div className="flex items-center gap-x-2 mr-2 p-2 hover:bg-slate-100 rounded-md transition">
+                    <Image 
+                        src="/logo.svg"
+                        alt="Logo"
+                        height={40}
+                        width={40}
+                        className="dark:hidden"
+                        style={{ width: 'auto', height: 'auto' }}
+                        priority
+                    />
+                    <span className={`hidden sm:block text-sm font-semibold ${font.className}`}>
+                        На главную
+                    </span>
+                </div>
+            </Link>
+            <Separator className="h-8" orientation="vertical" />
+            <div 
+                className="flex items-center gap-x-2 px-2 hover:bg-slate-100 rounded-md transition"
+                onClick={() => onOpen(boardId, data?.title || "Untitled")}
+                role="button"
+                style={{ cursor: "pointer" }}
             >
-                <Button asChild variant="board" className="px-2">
-                    <Link 
-                        href="/"
-                    >
-                        <Image 
-                            src="/logo.svg"
-                            alt="Board logo"
-                            height={40}
-                            width={40}
-                        />
-                        <span className={cn(
-                            "font-semibold text-xl ml-2 text-black",
-                            font.className,
-                        )}>
-                            Board
-                        </span>
-                    </Link>
-                </Button>
-            </Hint>
-            <TabSeparator />
-            <Hint label="Изменить название" side="bottom" sideOffset={10}>
-                <Button
-                    variant="board"
-                    className="text-base font-normal px-2"
-                    onClick={() => onOpen(data._id, data.title)}
-                >
-                    {data.title}
-                </Button>
-            </Hint>
-            <TabSeparator />
+                <span className="text-sm font-medium">
+                    {data?.title || "Untitled"}
+                </span>
+            </div>
             <Actions
-                id={data._id}
-                title={data.title}
+                id={boardId}
+                title={data?.title || "Untitled"}
                 side="bottom"
                 sideOffset={10}
             >
-                <div>
-                    <Hint label="Меню" side="bottom" sideOffset={10}>
-                        <Button size="icon" variant="board">
-                            <Menu />
-                        </Button>
-                    </Hint>
-                </div>
+                <Button
+                    variant="board"
+                    size="sm"
+                    className="text-sm h-auto p-2"
+                >
+                    <Menu className="h-4 w-4" />
+                </Button>
             </Actions>
         </div>
     );

@@ -36,6 +36,7 @@ import { SelectionTools } from "./selection-tools";
 import { Path } from "./path";
 import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
 import { useDeleteLayers } from "@/hooks/use-delete-layers";
+import { useMyPresence } from "@/liveblocks.config";
 
 const MAX_LAYERS = 100;
 
@@ -46,6 +47,9 @@ interface CanvasProps {
 export const Canvas = ({
     boardId,
 }: CanvasProps) => {
+    const [{ cursor }] = useMyPresence();
+    const [isReady, setIsReady] = useState(false);
+
     const layerIds = useStorage((root) => root.layerIds);
 
     const pencilDraft = useSelf((me) => me.presence.pencilDraft);
@@ -58,8 +62,6 @@ export const Canvas = ({
         g: 0,
         b: 0,
     });
-
-    
 
     useDisableScrollBounce();
     const history = useHistory();
@@ -442,6 +444,14 @@ export const Canvas = ({
         }
     }, [deleteLayers, history]);
 
+    useEffect(() => {
+        setIsReady(true);
+    }, []);
+
+    if (!isReady) {
+        return null;
+    }
+
     return (
         <main
             className="h-full w-full relative bg-neutral-100 touch-none"
@@ -509,6 +519,16 @@ export const Canvas = ({
                     )}
                 </g>
             </svg>
+            <div className="h-full w-full relative">
+                {cursor && (
+                    <div 
+                        className="absolute top-0 left-0 w-4 h-4 bg-blue-500 rounded-full pointer-events-none"
+                        style={{
+                            transform: `translate(${cursor.x}px, ${cursor.y}px)`
+                        }}
+                    />
+                )}
+            </div>
         </main>
     );
 };

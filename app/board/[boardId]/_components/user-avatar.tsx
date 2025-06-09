@@ -10,6 +10,7 @@ interface UserAvatarProps {
     name?: string;
     fallback?: string;
     borderColor?: string;
+    email?: string;
 };
 
 export const UserAvatar = ({
@@ -17,9 +18,10 @@ export const UserAvatar = ({
     name,
     fallback,
     borderColor,
+    email,
 }: UserAvatarProps) => {
     return (
-        <Hint label={name || "Коллега"} side="bottom" sideOffset={18}>
+        <Hint label={name || email || "Unnamed User"} side="bottom" sideOffset={18}>
             <Avatar
                 className="h-8 w-8 border-2"
                 style={{ borderColor }}

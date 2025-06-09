@@ -42,3 +42,17 @@ declare global {
     
   }
 };
+
+export const {
+  RoomProvider,
+  useMyPresence,
+  useUpdateMyPresence,
+  useOthers,
+  useOther,
+  useSelf,
+  useStorage,
+  useMutation,
+  useHistory,
+  useCanUndo,
+  useCanRedo,
+} = createRoomContext(client);

@@ -8,6 +8,7 @@ export const EmptyFavorites = () => {
                 height={140}
                 width={140}
                 alt="Empty"
+                style={{ width: 'auto', height: 'auto' }}
             />
             <h2 className="text-2xl font-semibold mt-6">
                 Нет избранных досок

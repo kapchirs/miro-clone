@@ -37,6 +37,7 @@ export const EmptyBoards = () => {
                 height={110}
                 width={110}
                 alt="Empty"
+                style={{ width: 'auto', height: 'auto' }}
             />
             <h2 className="text-2xl font-semibold mt-6">
                 Создай свою первую доску!

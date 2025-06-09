@@ -17,7 +17,7 @@ export const Cursor = memo(({
     const info = useOther(connectionId, (user) => user?.info);
     const cursor = useOther(connectionId, (user) => user.presence.cursor)
 
-    const name = info?.name || "Коллега";
+    const name = info?.name || info?.email || "Unnamed User";
 
     if (!cursor) {
         return null;

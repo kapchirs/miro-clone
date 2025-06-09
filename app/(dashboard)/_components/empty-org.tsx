@@ -6,7 +6,10 @@ import {
     Dialog,
     DialogContent,
     DialogTrigger,
+    DialogTitle,
+    DialogDescription,
 } from "@/components/ui/dialog";
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 
 export const EmptyOrg = () => {
     return (
@@ -16,6 +19,8 @@ export const EmptyOrg = () => {
                 alt="Empty"
                 height={200}
                 width={200}
+                style={{ width: 'auto', height: 'auto' }}
+                priority
             />
             <h2 className="text-2xl font-semibold mt-6">
                 Добро пожаловать в Board
@@ -31,6 +36,12 @@ export const EmptyOrg = () => {
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="p-0 bg-transparent border-none max-w-[480px]">
+                        <DialogTitle>
+                            <VisuallyHidden>Создание организации</VisuallyHidden>
+                        </DialogTitle>
+                        <DialogDescription>
+                            <VisuallyHidden>Форма создания новой организации</VisuallyHidden>
+                        </DialogDescription>
                         <CreateOrganization />
                     </DialogContent>
                 </Dialog>

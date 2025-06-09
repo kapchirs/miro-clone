@@ -29,8 +29,9 @@ export async function POST(request: Request) {
     }
 
     const userInfo = {
-        name: user.firstName || "Коллега",
+        name: user.firstName || user.emailAddresses[0].emailAddress,
         picture: user.imageUrl,
+        avatar: user.imageUrl,
     };
 
     const session = liveblocks.prepareSession(
